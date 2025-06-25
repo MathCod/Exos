@@ -1,0 +1,64 @@
+.reseaux {
+    height: 4em;
+    width: 4em;
+}
+
+.img1 {
+    height: 10em;
+    width: 10em;
+}
+
+.logo {
+    height: 2em;
+    width: 4em;
+}
+
+.line {
+    text-decoration: none;
+    color: black;
+    background-color: rgb(1, 162, 207);
+    padding: 0.5em;
+    margin: 3em;
+    border-style: solid;
+	border-width: 0.1em;
+	border-radius: 2em;
+}
+
+.button:hover {
+	font-weight: 800;
+	border-width: 3px;
+    background-color: #6cb3ff;
+}
+
+h1, h2, h3 {
+    text-decoration: underline;
+    text-shadow: 0.3em 0.3em 0.3em rgb(1, 162, 207);
+}
+
+.center {
+    text-align: center;
+
+}
+
+.backgroundColor {
+    background-color: #EDEDED;
+}
+
+div {
+    background-color: white;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+body {
+    background-color: #1F2039;
+}
+
+p, ul, h1, h2 {
+    color: #F9F8FF;
+}
+
+.linear {
+    background: linear-gradient(90deg,#8E86B5, #ACAEED);
+    color: white;
+}
