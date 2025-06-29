@@ -10,10 +10,12 @@
  * @param {number} nbMotsProposes : le nombre de mots proposés à l'utilisateur
  */
 function afficherResultat(score, nbMotsProposes) {
-    let zoneScore = document.querySelector(".zoneScore span")
-
-    let affichageScore = `${score} / ${nbMotsProposes}`
-    zoneScore.innerText = affichageScore
+    // Récupération de la zone dans laquelle on va écrire le score
+    let spanScore = document.querySelector(".zoneScore span")
+    // Ecriture du texte
+    let affichageScore = `${score} / ${nbMotsProposes}` 
+    // On place le texte à l'intérieur du span. 
+    spanScore.innerText = affichageScore
 }
 
 function afficherProposition(proposition) {
@@ -26,33 +28,49 @@ function afficherProposition(proposition) {
  * Elle demande à l'utilisateur de choisir entre "mots" et "phrases" et lance la boucle de jeu correspondante
  */
 function lancerJeu() {
+    // Initialisations
     let score = 0
     let i = 0
+    let listeProposition = listeMots
 
     let btnValiderMot = document.getElementById("btnValiderMot")
     let inputEcriture = document.getElementById("inputEcriture")
-    afficherProposition(listeMots[i])
+
+    afficherProposition(listeProposition[i])
+
+    // Gestion de l'événement click sur le bouton "valider"
     btnValiderMot.addEventListener("click", () => {
-        console.log(inputEcriture.value)
-        if (inputEcriture.value === listeMots[i]) {
+        if (inputEcriture.value === listeProposition[i]) {
             score++
-            
         }
         i++
-        console.log(afficherResultat.value)
         afficherResultat(score, i)
-        
-        inputEcriture.value = ""
-        if (listeMots[i] === undefined) {
-            afficherProposition("le jeux est fini")
+        inputEcriture.value = ''
+        if (listeProposition[i] === undefined) {
+            afficherProposition("Le jeu est fini")
             btnValiderMot.disabled = true
         } else {
-            afficherProposition(listeMots[i])
+            afficherProposition(listeProposition[i])
         }
-
-        console.log(listeMots[i])
-
+        
     })
+
+    // Gestion de l'événement change sur les boutons radios. 
+    let listeBtnRadio = document.querySelectorAll(".optionSource input")
+    for (let index = 0; index < listeBtnRadio.length; index++) {
+        listeBtnRadio[index].addEventListener("change", (event) => {
+            // Si c'est le premier élément qui a été modifié, alors nous voulons
+            // jouer avec la listeMots. 
+            if (event.target.value === "1") {
+                listeProposition = listeMots
+            } else {
+                // Sinon nous voulons jouer avec la liste des phrases
+                listeProposition = listePhrases
+            }
+            // Et on modifie l'affichage en direct. 
+            afficherProposition(listeProposition[i])
+        })
+    }
 
     afficherResultat(score, i)
 }
